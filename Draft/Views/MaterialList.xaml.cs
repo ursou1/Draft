@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Draft.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Draft.Views
         public MaterialList()
         {
             InitializeComponent();
+            DataContext = new MaterialListViewModel();
         }
     }
 }

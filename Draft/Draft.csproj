@@ -187,32 +187,32 @@
     <Resource Include="Черновик.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\materials\material_1.jpeg" />
-    <Resource Include="Images\materials\material_10.jpeg" />
-    <Resource Include="Images\materials\material_11.jpeg" />
-    <Resource Include="Images\materials\material_12.jpeg" />
-    <Resource Include="Images\materials\material_13.jpeg" />
-    <Resource Include="Images\materials\material_14.jpeg" />
-    <Resource Include="Images\materials\material_15.jpeg" />
-    <Resource Include="Images\materials\material_16.jpeg" />
-    <Resource Include="Images\materials\material_17.jpeg" />
-    <Resource Include="Images\materials\material_18.jpeg" />
-    <Resource Include="Images\materials\material_19.jpeg" />
-    <Resource Include="Images\materials\material_2.jpeg" />
-    <Resource Include="Images\materials\material_20.jpeg" />
-    <Resource Include="Images\materials\material_21.jpeg" />
-    <Resource Include="Images\materials\material_22.jpeg" />
-    <Resource Include="Images\materials\material_23.jpeg" />
-    <Resource Include="Images\materials\material_24.jpeg" />
-    <Resource Include="Images\materials\material_25.jpeg" />
-    <Resource Include="Images\materials\material_26.png" />
-    <Resource Include="Images\materials\material_3.jpeg" />
-    <Resource Include="Images\materials\material_4.jpeg" />
-    <Resource Include="Images\materials\material_5.jpeg" />
-    <Resource Include="Images\materials\material_6.jpeg" />
-    <Resource Include="Images\materials\material_7.jpeg" />
-    <Resource Include="Images\materials\material_8.jpeg" />
-    <Resource Include="Images\materials\material_9.jpeg" />
+    <Resource Include="materials\material_1.jpeg" />
+    <Resource Include="materials\material_10.jpeg" />
+    <Resource Include="materials\material_11.jpeg" />
+    <Resource Include="materials\material_12.jpeg" />
+    <Resource Include="materials\material_13.jpeg" />
+    <Resource Include="materials\material_14.jpeg" />
+    <Resource Include="materials\material_15.jpeg" />
+    <Resource Include="materials\material_16.jpeg" />
+    <Resource Include="materials\material_17.jpeg" />
+    <Resource Include="materials\material_18.jpeg" />
+    <Resource Include="materials\material_19.jpeg" />
+    <Resource Include="materials\material_2.jpeg" />
+    <Resource Include="materials\material_20.jpeg" />
+    <Resource Include="materials\material_21.jpeg" />
+    <Resource Include="materials\material_22.jpeg" />
+    <Resource Include="materials\material_23.jpeg" />
+    <Resource Include="materials\material_24.jpeg" />
+    <Resource Include="materials\material_25.jpeg" />
+    <Content Include="materials\material_26.jpeg" />
+    <Resource Include="materials\material_3.jpeg" />
+    <Resource Include="materials\material_4.jpeg" />
+    <Resource Include="materials\material_5.jpeg" />
+    <Resource Include="materials\material_6.jpeg" />
+    <Resource Include="materials\material_7.jpeg" />
+    <Resource Include="materials\material_8.jpeg" />
+    <Resource Include="materials\material_9.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\Model1.Context.tt">
@@ -225,6 +225,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\material_list_layout.jpg" />
+    <Resource Include="Images\picture.png" />
+    <Resource Include="Images\Черновик.ico" />
+    <Resource Include="Images\Черновик.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

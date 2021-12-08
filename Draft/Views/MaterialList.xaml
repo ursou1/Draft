@@ -125,48 +125,79 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
-            <ComboBox Grid.Column="1" ItemsSource="{Binding SortValues}" SelectedItem="{Binding SelectedSortValue}"/>
-            <ComboBox Grid.Column="2" ItemsSource="{Binding FilterValues}" SelectedItem="{Binding SelectedFilterValue}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="Поиск:"/>
+                <Label Grid.Column="1" Content="Критерий поиска:"/>
+                <TextBox Width="200" Grid.Row="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Width="200" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SearchType}" SelectedItem="{Binding SelectedSearchType}"/>
+            </Grid>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                <Label Content="Фильтрация по типу"/>
+                <ComboBox Width="200" DisplayMemberPath="Name" ItemsSource="{Binding TypeFilter}" SelectedItem="{Binding SelectedTypeFilter}"/>
+            </StackPanel>
         </Grid>
         <ListBox Grid.Row="1" ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Background="White" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition />
+                            <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding MaterialImage}"/>
-                        <Grid Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Label Content="{Binding MaterialType.Title}"/>
-                            <Label Grid.Column="1" Content="{Binding Title}"/>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding MinCount}"/>
-                            <Label Grid.Row="2" Grid.ColumnSpan="2" Content="{Binding SuppliersList}"/>
-                        </Grid>
+                        <Image Source="{Binding Image}" Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Left"/>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding MaterialType.Title}"/>
+                                <Label Content="|"/>
+                                <Label Content="{Binding Title}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Минимальное Количество:"/>
+                                <Label Content="{Binding MinCount}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="Поставщики: "/>
+                                <Label Content="{Binding Supplier}"/>
+                            </StackPanel>
+
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                            <Label Content="Остаток:"/>
+                            <Label  Content="{Binding CountInStock}"/>
+                            <Label  Content="{Binding Unit}"/>
+                        </StackPanel>
+
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Content="{Binding SearchCountRows}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Предыдущая страница" Width="180" Command="{Binding BackPage}"/>
+                <Button Content="Следующая страница" Width="180" Command="{Binding ForwardPage}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                <Label Content="Кол-во записей на странице:"/>
+                <ComboBox Width="200" ItemsSource="{Binding ViewCountRows}" SelectedItem="{Binding SelectedViewCountRows}"/>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Page>
