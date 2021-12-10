@@ -71,6 +71,39 @@ namespace Draft.ViewModels
                 SignalChanged();
             }
         }
+        private string searchText = "";
+        public string SearchText
+        {
+            get => searchText;
+            set
+            {
+                searchText = value;
+                Search();
+            }
+        }
+
+        private MaterialType selectedTypeFilter;
+        public List<MaterialType> TypelFilter { get; set; }
+        public MaterialType SelectedTypeFilter
+        {
+            get => selectedTypeFilter;
+            set
+            {
+                selectedTypeFilter = value;
+                Search();
+            }
+        }
+
+        #region search
+        private void Search()
+        {
+            var search = SearchText.ToLower();
+            searchResult = DBInstance.Get().Material.Where(c => c.Title.ToLower().Contains(search) || c.Description.ToLower().Contains(search)).ToList();
+            InitPagination();
+            Pagination();
+        }
+        #endregion
+
 
         public CustomCommand BackPage { get; set; }
         public CustomCommand ForwardPage { get; set; }
