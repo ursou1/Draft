@@ -82,8 +82,44 @@ namespace Draft.ViewModels
             }
         }
 
+        #region for sort
+        public List<string> FilterNum { get; set; }
+        private string selectedFilterNum;
+        private string selectedFilterMaterial;
+        private string selectedFilterValue;
+        public string SelectedFilterNum
+        {
+            get => selectedFilterNum;
+            set
+            {
+                selectedFilterNum = value;
+                Search();
+            }
+        }
+        public List<string> FilterMaterial { get; set; }
+        public string SelectedFilterMaterial
+        {
+            get => selectedFilterMaterial;
+            set
+            {
+                selectedFilterMaterial = value;
+                Search();
+            }
+        }
+        public List<string> FilterValue { get; set; }
+        public string SelectedFilterValue
+        {
+            get => selectedFilterValue;
+            set
+            {
+                selectedFilterValue = value;
+                Search();
+            }
+        }
+        #endregion region
+
         private MaterialType selectedTypeFilter;
-        public List<MaterialType> TypelFilter { get; set; }
+        public List<MaterialType> TypeFilter { get; set; }
         public MaterialType SelectedTypeFilter
         {
             get => selectedTypeFilter;
@@ -136,6 +172,19 @@ namespace Draft.ViewModels
             ViewCountRows.AddRange(new string[] { "15", "все" });
             selectedViewCountRows = ViewCountRows.First();
 
+            //lists for CB
+            FilterNum = new List<string>();
+            FilterMaterial = new List<string>();
+            FilterValue = new List<string>();
+            //заполнение комбобоксов
+            FilterNum.AddRange(new string[] { "По умолчанию", "По увеличению", "По уменьшению" });
+            FilterMaterial.AddRange(new string[] { "Все типы", "Рулон", "Гранулы", "Нарезка", "Пресс", });
+            FilterValue.AddRange(new string[] { "По наименованию", "По остатку", "По стоимости" });
+            //выбор первого значения
+            selectedFilterNum = FilterNum.First();
+            selectedFilterMaterial = FilterMaterial.First();
+            selectedFilterValue = FilterValue.First();
+
             BackPage = new CustomCommand(() =>
             {
                 if (searchResult == null)
@@ -183,7 +232,5 @@ namespace Draft.ViewModels
                     .Take(rowsOnPage).ToList();
             }
         }
-
-
     }
 }

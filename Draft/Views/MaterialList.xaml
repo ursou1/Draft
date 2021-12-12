@@ -138,19 +138,26 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Label Content="Поиск:"/>
-                <Label Grid.Column="1" Content="Критерий поиска:"/>
+                <Label Grid.Column="1" Content="Фильтр чисел:"/>
+                <!--Filter-->
+                <ComboBox Width="200" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FilterNum}" SelectedItem="{Binding SelectedFilterNum}"/>
                 <TextBox Width="200" Grid.Row="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
-                <ComboBox Width="200" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SearchType}" SelectedItem="{Binding SelectedSearchType}"/>
+                <Label Grid.Column="2" Content="Фильтр материала:"/>
+                <!--Filter-->
+                <ComboBox Width="200" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding FilterMaterial}" SelectedItem="{Binding SelectedFilterMaterial}"/>
+                
             </Grid>
             <StackPanel Grid.Column="1" HorizontalAlignment="Left">
-                <Label Content="Фильтрация по типу"/>
-                <ComboBox Width="200" DisplayMemberPath="Name" ItemsSource="{Binding TypeFilter}" SelectedItem="{Binding SelectedTypeFilter}"/>
+                <Label Content="Фильтр значений:"/>
+                <!--Filter-->
+                <ComboBox Width="200"  ItemsSource="{Binding FilterValue}" SelectedItem="{Binding SelectedFilterValue}"/>
             </StackPanel>
         </Grid>
         <ListBox Grid.Row="1" ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}">
