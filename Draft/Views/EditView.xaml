@@ -1,0 +1,24 @@
+﻿<Window x:Class="Draft.Views.EditView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Draft.Views"
+        mc:Ignorable="d"
+        Title="Редактирование" Height="200" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Введите новое значение:"></Label>
+        <TextBox Height="30" Width="100" Text="{Binding MinCountValue}"></TextBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button Content="Отмена" Height="30" Click="Button_Click"/>
+
+            <Button Content="Принять" Height="30" Click="Button_Click"  Command="{Binding Save}" HorizontalAlignment="Right"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

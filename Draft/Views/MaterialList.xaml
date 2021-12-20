@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Draft.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MaterialList">
+      Title="Список материалов" Background="white" >
 
     <!--<Grid>
         <Grid.RowDefinitions>
@@ -125,7 +125,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid>
@@ -138,39 +138,44 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Label Content="Поиск:"/>
-                <Label Grid.Column="1" Content="Фильтр чисел:"/>
-                <!--Filter-->
-                <ComboBox Width="200" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FilterNum}" SelectedItem="{Binding SelectedFilterNum}"/>
-                <TextBox Width="200" Grid.Row="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label Grid.Column="2" Content="Фильтр материала:"/>
-                <!--Filter-->
-                <ComboBox Width="200" Grid.Row="1" Grid.Column="3" ItemsSource="{Binding FilterMaterial}" SelectedItem="{Binding SelectedFilterMaterial}"/>
-                
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <Label Content="Поиск:"/>
+                        <TextBox Width="200" Grid.Row="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Grid.Column="1" Content="Критерий поиска:"/>
+                        <ComboBox Width="200" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SearchType}" SelectedItem="{Binding SelectedSearchType}"/>
+                    </StackPanel>
+                </StackPanel>
             </Grid>
             <StackPanel Grid.Column="1" HorizontalAlignment="Left">
-                <Label Content="Фильтр значений:"/>
-                <!--Filter-->
-                <ComboBox Width="200"  ItemsSource="{Binding FilterValue}" SelectedItem="{Binding SelectedFilterValue}"/>
+                <Label Content="Фильтрация по типу"/>
+                <ComboBox Width="200" DisplayMemberPath="Title" ItemsSource="{Binding MaterialTypeFilter}" SelectedItem="{Binding SelectedMaterialTypeFilter}"/>
             </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <StackPanel  HorizontalAlignment="Left">
+                    <Label Content="Сортировка по типу"/>
+                    <ComboBox Width="200" ItemsSource="{Binding SortTypes}" SelectedItem="{Binding SelectedSortType}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" VerticalAlignment="Bottom" >
+                    <ComboBox Width="200" ItemsSource="{Binding OrderTypes}" SelectedItem="{Binding SelectedOrderType}"/>
+                </StackPanel>
+            </StackPanel>
+
         </Grid>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Materials}" SelectedItem="{Binding SelectedMaterial}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding Materials}" Name="list" SelectedItem="{Binding SelectedMaterial}" HorizontalContentAlignment="Stretch" SelectionMode="Extended">
             <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Background="White" >
+                <DataTemplate >
+                    <Grid Background="{Binding ColorForXaml}" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition />
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Image}" Width="100" Height="100" Grid.Column="0" HorizontalAlignment="Left"/>
-                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center">
+                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding MaterialType.Title}"/>
                                 <Label Content="|"/>
@@ -183,7 +188,7 @@
 
                             <StackPanel Orientation="Horizontal" >
                                 <Label Content="Поставщики: "/>
-                                <Label Content="{Binding Supplier}"/>
+                                <Label Content="{Binding SupplierString}"/>
                             </StackPanel>
 
 
@@ -195,18 +200,28 @@
                         </StackPanel>
 
                     </Grid>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Изменить минимальное количество на..." Click="MenuItem_Click"  Command="{Binding ChangeMinCount}"/>
+                    <MenuItem Header="Редактировать" Command="{Binding EditMaterial}"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
+
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Label Content="{Binding SearchCountRows}"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Предыдущая страница" Width="180" Command="{Binding BackPage}"/>
-                <Button Content="Следующая страница" Width="180" Command="{Binding ForwardPage}"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="&lt;" Width="20" Command="{Binding BackPage}"/>
+                <Label Content="{Binding Pages}"/>
+                <Button Content=">" Width="20" Command="{Binding ForwardPage}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
                 <Label Content="Кол-во записей на странице:"/>
                 <ComboBox Width="200" ItemsSource="{Binding ViewCountRows}" SelectedItem="{Binding SelectedViewCountRows}"/>
+                <Button Content="Создать материал" Command="{Binding AddMaterial}"/>
             </StackPanel>
         </StackPanel>
 

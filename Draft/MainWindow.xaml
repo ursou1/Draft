@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Draft"
         mc:Ignorable="d"
-        MinHeight="350" MinWidth="600"
-        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="700" Width="1300" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,13 +21,9 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Image Source="Черновик.png" Grid.RowSpan="2" Width="100"/>
-            <Label Grid.Column="1" Grid.RowSpan="2" FontSize="50"  Content="Черновик"/>
-            <Label Content="Навигация" VerticalAlignment="Bottom" Grid.Column="2"/>
-            <StackPanel  Grid.Row="1" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <Button Content="Назад" />
-                <Button Content="Вперед" />
-            </StackPanel>
+            <Image Grid.RowSpan="2" Width="100" Source="Черновик.png"/>
+            <Label Grid.Column="1" Grid.RowSpan="2" FontSize="50" Foreground="{StaticResource Attention}" Content="Черновик"/>
+
         </Grid>
         <Frame Name="mainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" />
     </Grid>

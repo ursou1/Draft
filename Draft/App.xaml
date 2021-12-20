@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:Draft"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
         <SolidColorBrush x:Key="MainBackground" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="SecondaryBackground" Color="#FEA9AB"/>
         <SolidColorBrush x:Key="Attention" Color="#EAB14D"/>
@@ -22,7 +21,7 @@
             <Setter Property="FontFamily" Value="Segoe Print"/>
         </Style>
         <Style TargetType="Label">
-            <Setter Property="Background" Value="{StaticResource MainBackground}" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="Margin" Value="3"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Padding" Value="3"/>
@@ -58,6 +57,5 @@
             <Setter Property="Padding" Value="3"/>
             <Setter Property="FontFamily" Value="Segoe Print"/>
         </Style>
-
     </Application.Resources>
 </Application>

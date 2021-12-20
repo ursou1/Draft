@@ -1,0 +1,96 @@
+﻿<Window x:Class="Draft.Views.EditMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Draft.Views"
+        mc:Ignorable="d"
+        
+        Title="Редактирование материала" Height="500" Width="920" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel DataContext="{Binding AddMaterial}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Left">
+                <Label Content="Наименование:" />
+                <TextBox Text="{Binding Title}"/>
+
+                <Label Content="Количество на складе:"/>
+                <TextBox Text="{Binding CountInStock}"/>
+                <Label Content="Единица измерения:"/>
+                <TextBox Text="{Binding Unit}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" >
+                <Label Content="Количество в упаковке:"/>
+                <TextBox Text="{Binding CountInPack}"/>
+                <Label Content="Минимальное количество:"/>
+                <TextBox Text="{Binding MinCount}"/>
+                <Label Content="Стоимость за единицу:"/>
+                <TextBox Text="{Binding Cost}"/>
+            </StackPanel>
+
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Grid.Row="1" >
+
+            <StackPanel Width="200">
+                <Label Content="Тип материала:"/>
+                <ComboBox ItemsSource="{Binding MaterialTypes}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedMaterialType}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label Content="Фото:"/>
+                <Image Source="{Binding ImageMaterial}" Width="150" Height="150"/>
+                <Button Content="Выбрать изображение" Command="{Binding SelectImage}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="Возможные поставщики:" Height="30"/>
+            <ListBox Height="170" ItemsSource="{Binding SelectedMaterialSuppliers}" SelectedItem="{Binding SelectedMaterialSupplier}" DisplayMemberPath="Title">
+
+            </ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Поиск"/>
+                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Width="163"/>
+            </StackPanel>
+            <ComboBox ItemsSource="{Binding Supplier}" SelectedItem="{Binding SelectedSupplier}" DisplayMemberPath="Title"/>
+            <Button Width="100" Content="Добавить" Margin="0 70 0 0" Height="30" VerticalAlignment="Bottom" Command="{Binding AddSupplier}"/>
+            <Button Width="100" Content="Убрать" Height="30" VerticalAlignment="Bottom" Command="{Binding RemoveSupplier}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="1" DataContext="{Binding AddMaterial}">
+            <Label Content="Описание:"/>
+            <TextBox AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"  Height="180" Text="{Binding Description}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3">
+            <Label Content="Необходимые затараты на пополнение:"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Нужно для пополнения:"/>
+                <Label Content="{Binding NeedToStore}" Width="auto"/>
+                <Label Content="{Binding Unit}" Width="auto"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Минимальный объём закупки:"/>
+                <Label Content="{Binding MinCountToBuy}" Width="80"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Стоимость закупки"/>
+                <Label Content="{Binding MinCountCost}" Width="80"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Command="{Binding Cancel}" Grid.Row="2" Grid.Column="3" Content="Отмена" HorizontalAlignment="Center"/>
+        <Button Command="{Binding Save}" Grid.Row="2" Grid.Column="3"  Content="Сохранить" HorizontalAlignment="Right"/>
+        <Button Command="{Binding Delete}" Grid.Row="2" Grid.Column="0"  Content="Удалить" HorizontalAlignment="Left"/>
+    </Grid>
+</Window>
